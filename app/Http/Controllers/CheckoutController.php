@@ -8,9 +8,20 @@ use Konekt\Address\Models\CountryProxy;
 use Vanilo\Cart\Facades\Cart;
 use Vanilo\Checkout\Facades\Checkout;
 use Vanilo\Order\Contracts\OrderFactory;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	
+	protected function redirectTo($request)
+	{
+		return route('login');
+	}
+
     public function show()
     {
         $checkout = false;
@@ -39,7 +50,10 @@ class CheckoutController extends Controller
         $order = $orderFactory->createFromCheckout($checkout);
         Cart::destroy();
 
+	Mail::to($request->user())->send(new \App\Mail\Order($order));
+
         return view('checkout.thankyou', ['order' => $order]);
     }
 
 }
+

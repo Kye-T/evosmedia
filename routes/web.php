@@ -37,3 +37,9 @@ Route::group(['prefix' => 'checkout', 'as' => 'checkout.'], function() {
     Route::post('submit', 'CheckoutController@submit')->name('submit');
 });
 
+Route::get('/sm', function() {
+	$contents = View::make('sitemap.index');
+	$response = Response::make($contents, 200);
+	$response->header('Content-Type', 'text/xml');
+	return $response;
+});

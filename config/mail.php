@@ -56,8 +56,12 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => 'no-reply@evosmedia.uk',
+        'name' => 'EvosMedia',
+    ],
+    'reply_to' => [
+	'address' => 'contact@evosmedia.uk',
+	'name' => 'EvosMedia',
     ],
 
     /*
