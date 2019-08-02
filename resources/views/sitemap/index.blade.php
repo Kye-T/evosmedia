@@ -1,4 +1,11 @@
-<?php use Vanilo\Product\Models\Product;
+<?php
+
+/**
+ * Generates a sitemap for Google to access every n days
+ * when new products get created
+ */
+
+use Vanilo\Product\Models\Product;
 use Vanilo\Category\Models\Taxonomy;
 use Vanilo\Category\Models\Taxon;
 header('Content-Type: text/xml');
